@@ -1,39 +1,27 @@
 (function($){
-    $(function(){
-        var flag = true;
-        $('.statistics').parallax('50%',0.4)
-        $(window).scroll(function(){
-            var winScrollTop = $(this).scrollTop();
-            if(winScrollTop > 500) {
-                if(flag){
-                    $('.number').countTo({
-                         formatter: function (value, options) {
-                            return value.toFixed(options.decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                         }
-                    });
-                }
-                flag = false;
-            }
-        });
+  "user strict";
+  $(function(){
+    //$('.xeicon').parallax('50%', 0.4);
 
-        $('.fe_box').on('mouseenter mouseleave',function(e){
-            $this = $(this);
-            if(e.type == 'mouseenter'){
-                $this.addClass('on')
-            } else {
-                $this.removeClass('on');
-            }
+    $('.fe_box').on('mouseenter mouseleave',function(e){
+      $this = $(this);
+      if(e.type == 'mouseenter'){
+        $this.addClass('on');
+      } else {
+        $this.removeClass('on');
+      }
 
-        });
-    })
+    });
+  });
 })(jQuery);
 
 (function($) {
+  "user strict";
   var $window = $(window);
   var windowHeight = $window.height();
 
   $window.resize(function() {
-    windowHeight = $window.height()
+    windowHeight = $window.height();
   });
 
 
@@ -42,7 +30,7 @@
     var getHeight;
     var firstTop;
     $this.each(function() {
-      if($this.hasClass('statistics')){
+      if($this.hasClass('xeicon')){
         firstTop = $this.offset().top + 600;
       } else {
         firstTop = $this.offset().top;
@@ -51,12 +39,12 @@
 
     if (outerHeight) {
       getHeight = function(object) {
-        return object.outerHeight(true)
-      }
+        return object.outerHeight(true);
+      };
     } else {
       getHeight = function(object) {
-        return object.height()
-      }
+        return object.height();
+      };
     }
     if (arguments.length < 1 || xpos === null)
       xpos = "50%";
@@ -72,12 +60,12 @@
         var height = getHeight($element);
 
         if (top + height < pos || top > pos + windowHeight) {
-          return
+          return;
         }
-        $this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px")
-      })
+        $this.css('backgroundPosition', xpos + " " + Math.round((firstTop - pos) * speedFactor) + "px");
+      });
     }
     $window.bind('scroll', update).resize(update);
-    update()
-  }
+    update();
+  };
 })(jQuery);
